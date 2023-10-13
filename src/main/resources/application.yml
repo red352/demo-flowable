@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  main:
+    web-application-type: servlet
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.0.200:3306/flowable?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+    username: root
+    password: root
+flowable:
+  database-schema-update: true
+  rest-api-enabled: true
+
+logging:
+  level:
+    root: info
+    sql: debug
+    org.flowable.engine: debug
+  pattern:
+    dateformat: HH:mm:ss

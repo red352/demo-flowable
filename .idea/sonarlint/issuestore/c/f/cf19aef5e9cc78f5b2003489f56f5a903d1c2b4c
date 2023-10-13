@@ -1,0 +1,11 @@
+
+\
+java:S1854"?Remove this useless assignment to local variable "serviceTask".(üÌ±»8®öó½²1
+b
+java:S1854"@Remove this useless assignment to local variable "sequenceFlow".(“¨•µşÿÿÿÿ8®öó½²1
+S
+java:S1481"1Remove this unused "sequenceFlow" local variable.(“¨•µşÿÿÿÿ8°öó½²1
+M
+java:S1481"0Remove this unused "serviceTask" local variable.(üÌ±»8²öó½²1
+S
+java:S1068"1Remove this unused "sequenceFlows" private field.(îÆêµûÿÿÿÿ8³öó½²1
