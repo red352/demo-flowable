@@ -1,8 +1,6 @@
 server:
   port: 8080
 spring:
-  main:
-    web-application-type: servlet
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.0.200:3306/flowable?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
@@ -11,7 +9,16 @@ spring:
 flowable:
   database-schema-update: true
   rest-api-enabled: true
-
+  check-process-definitions: false # 是否自动部署流程
+  process:
+    servlet:
+      path: /process-api # rest api 前缀
+  process-definition-location-prefix: /processes/ # 自动部署流程定义位置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 logging:
   level:
     root: info

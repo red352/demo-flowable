@@ -1,12 +1,12 @@
 package org.example.config;
 
+import org.example.process.SfmProcess;
 import org.flowable.engine.RepositoryService;
 import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.task.api.Task;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
@@ -19,7 +19,6 @@ import java.util.Scanner;
  * @since 2023/10/11 16:56
  */
 @Configuration
-@ComponentScan(basePackages = "org.flowable.spring.boot")
 public class FlowAbleConfig {
 
 
@@ -33,7 +32,16 @@ public class FlowAbleConfig {
 
         return strings -> {
 
-//            repositoryService.createDeploymentQuery().list().forEach(deployment -> repositoryService.deleteDeployment(deployment.getId(),true));
+
+            repositoryService.createDeploymentQuery()
+                    .list().forEach(deployment -> repositoryService.deleteDeployment(deployment.getId(), true));
+
+            repositoryService.createDeployment()
+                    .addBpmnModel("processes/holiday-request.bpmn20.xml", SfmProcess.create())
+                    .key("holiday-java-deploy")
+                    .name("测试使用java部署")
+                    .deploy();
+
 
             Map<String, Object> variables;
             // 职员提交审批
@@ -54,7 +62,7 @@ public class FlowAbleConfig {
                         variables.put("employee", employee);
                         variables.put("nrOfHolidays", nrOfHolidays);
                         variables.put("description", description);
-                        runtimeService.startProcessInstanceByKey("holidayRequest", variables);
+                        runtimeService.startProcessInstanceByKey("holiday-java", variables);
                     }
                     case "1" -> {
                         // 管理者进入审批界面

@@ -23,10 +23,10 @@ public class FlowableController {
 
     @GetMapping
     public ResponseEntity<byte[]> getProcessImage() throws IOException {
-        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionKey("holidayRequest").singleResult();
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionKey("holiday-java").singleResult();
         InputStream inputStream = repositoryService.getResourceAsStream(processDefinition.getDeploymentId(), processDefinition.getDiagramResourceName());
         return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_XML)
+                .contentType(MediaType.IMAGE_PNG)
                 .body(inputStream.readAllBytes());
     }
 }
